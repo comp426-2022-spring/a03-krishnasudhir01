@@ -47,6 +47,14 @@ app.get('/app/flips/:number', (req, res) => {
 	res.end(res.statusMessage);
 });
 
+app.get('/app/flip/call/:userCall', (req, res) => {
+        var guess = flipACoin(req.params.userCall);
+        console.log(guess);
+        res.statusCode = 200;
+        res.statusMessage = JSON.stringify(guess);
+        res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
+        res.end(res.statusMessage);
+})
 
 app.use(function(req,res){
 	res.status(404).send('404 NOT FOUND')
